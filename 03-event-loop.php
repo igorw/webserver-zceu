@@ -15,7 +15,6 @@ while (true) {
         foreach ($readable as $stream) {
             if ($server === $stream) {
                 $conn = stream_socket_accept($server, 0);
-                stream_set_blocking($conn, 0);
                 $read[] = $conn;
             } else {
                 $data = fread($stream, 1024);
