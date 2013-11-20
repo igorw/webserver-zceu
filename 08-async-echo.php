@@ -3,13 +3,11 @@
 require __DIR__.'/99-event-loop.php';
 
 $server = stream_socket_server('tcp://0.0.0.0:5000');
-stream_set_blocking($server, 0);
 
 $loop = new EventLoop();
 
 $loop->onReadable($server, function ($server) use ($loop) {
     $conn = stream_socket_accept($server, 0);
-    stream_set_blocking($conn, 0);
 
     $buffer = '';
     $closing = false;

@@ -1,7 +1,6 @@
 <?php
 
 $server = stream_socket_server('tcp://0.0.0.0:5000');
-stream_set_blocking($server, 0);
 
 while (true) {
     $response = implode("\r\n", [
@@ -12,7 +11,6 @@ while (true) {
     ]);
 
     $conn = stream_socket_accept($server, -1);
-    stream_set_blocking($conn, 0);
     fwrite($conn, $response);
     fclose($conn);
 }
